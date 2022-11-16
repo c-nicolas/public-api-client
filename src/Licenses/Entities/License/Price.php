@@ -18,6 +18,8 @@ class Price extends AbstractEntity
 
     public const COLUMN_LIST_PRICE = 'list_price';
 
+    public const COLUMN_MSP_SELL_PRICE = 'msp_sell_price';
+
     public const COLUMN_CURRENCY = 'currency';
 
     /**
@@ -41,6 +43,11 @@ class Price extends AbstractEntity
     private $sellPrice;
 
     /**
+     * @var float
+     */
+    private $mspSellPrice;
+
+    /**
      * @var string|null
      */
     private $currency;
@@ -50,6 +57,7 @@ class Price extends AbstractEntity
         self::COLUMN_BUY_PRICE                  => 'present|numeric',
         self::COLUMN_SELL_PRICE                 => 'present|numeric',
         self::COLUMN_LIST_PRICE                 => 'present|numeric',
+        self::COLUMN_MSP_SELL_PRICE             => 'present|numeric',
         self::COLUMN_CURRENCY                   => 'present',
     ];
 
@@ -68,6 +76,7 @@ class Price extends AbstractEntity
         $this->buyPrice = $data[self::COLUMN_BUY_PRICE];
         $this->sellPrice = $data[self::COLUMN_SELL_PRICE];
         $this->listPrice = $data[self::COLUMN_LIST_PRICE];
+        $this->mspSellPrice = $data[self::COLUMN_MSP_SELL_PRICE];
         $this->currency = $data[self::COLUMN_CURRENCY];
     }
 
@@ -104,6 +113,14 @@ class Price extends AbstractEntity
     }
 
     /**
+     * @return float
+     */
+    public function getMspSellPrice(): float
+    {
+        return $this->mspSellPrice;
+    }
+
+    /**
      * @return string|null
      */
     public function getCurrency(): ?string
@@ -121,6 +138,7 @@ class Price extends AbstractEntity
             self::COLUMN_BUY_PRICE                  => $this->buyPrice,
             self::COLUMN_SELL_PRICE                 => $this->sellPrice,
             self::COLUMN_LIST_PRICE                 => $this->listPrice,
+            self::COLUMN_MSP_SELL_PRICE             => $this->mspSellPrice,
             self::COLUMN_CURRENCY                   => $this->currency,
         ];
     }
